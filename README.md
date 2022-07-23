@@ -30,7 +30,10 @@ public class JniUtil {
         }
     }
 
-    // get the string , need trim() in java
+    // encrypt
+    public static native String dpEnc(String text);
+
+    // decrypt
     public static native String dpDec(String encText);
 }
 ```

@@ -84,7 +84,8 @@ fn encrypt(key: &str, iv: &str, text: &str) -> Result<String, Box<dyn Error>> {
     let mut result = vec![0; 4096];
     let mut write_buffer = RefWriteBuffer::new(&mut result);
     encrypt.encrypt(&mut read_buffer, &mut write_buffer, true).unwrap();
-    Ok(base64::encode_config(trim(&result)?, base64::STANDARD))
+    let enc_str = base64::encode_config(trim(&result)?, base64::STANDARD);
+    Ok(enc_str)
 }
 
 /// 解密
@@ -101,7 +102,7 @@ fn decrypt(key: &str, iv: &str, input: &str) -> Result<String, Box<dyn Error>> {
     let mut write_buffer = RefWriteBuffer::new(&mut result);
     decrypt.decrypt(&mut read_buffer, &mut write_buffer, true).unwrap();
     let dec_str = String::from_utf8(trim(&result)?)?;
-    Ok(dec_str.trim().to_string())
+    Ok(dec_str)
 }
 
 fn trim(input: &Vec<u8>)  -> Result<Vec<u8>, Box<dyn Error>> {

@@ -11,11 +11,19 @@ import java.io.IOException;
 public class JniUtil {
 
     static {
+        String osName = System.getProperties().getProperty("os.name");
+        // other linux
+        String nativeLibrary = "/jni_lib/libjniutil.so";
+        // win
+        if (osName.contains("Win")) {
+            nativeLibrary = "/jni_lib/jniutil.dll";
+        }
+        // mac
+        else if (osName.contains("Mac")) {
+            nativeLibrary = "/jni_lib/libjniutil.dylib";
+        }
         try {
-            /**
-             * @see <a href="https://github.com/adamheinrich/native-utils">https://github.com/adamheinrich/native-utils</a>
-             */
-            NativeUtil.loadLibraryFromJar("/jni_lib/libjniutil.so");
+            NativeUtil.loadLibraryFromJar(nativeLibrary);
         }
         catch (IOException e) {
             throw new RuntimeException(e);

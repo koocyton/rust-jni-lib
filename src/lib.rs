@@ -21,7 +21,7 @@ const DP_CBC_KEY: &str    = "1111111111111111";
 const DP_CBC_OFFSET: &str = "1111111111111111";
 
 #[no_mangle]
-pub extern "system" fn Java_com_doopp_news_boot_util_JniUtil_dpEnc(
+pub extern "system" fn Java_com_doopp_common_util_JniUtil_dpEnc(
     env: JNIEnv,
     // this is the class that owns our
     // static method. Not going to be
@@ -47,7 +47,7 @@ pub extern "system" fn Java_com_doopp_news_boot_util_JniUtil_dpEnc(
 }
 
 #[no_mangle]
-pub extern "system" fn Java_com_doopp_news_boot_util_JniUtil_dpDec(
+pub extern "system" fn Java_com_doopp_common_util_JniUtil_dpDec(
     env: JNIEnv,
     // this is the class that owns our
     // static method. Not going to be
